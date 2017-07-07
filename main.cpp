@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <time.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 #define INF 112345678
@@ -34,7 +31,7 @@ void novosneuronios() {
     for (int i = 0; i < NEURONIOS; i++)
         for (int j = 0; j < NEURONIOS; j++)
             for (int k = 0; k < LEN * LEN; k++)
-                n[i][j][k] = (rand() % 1000) / (double) 1000;
+                n[i][j][k] = (rand() % 1024) / (double) 1023;
 }
 
 double distsimilar(double a[LEN * LEN], double b[LEN * LEN]) {
@@ -66,33 +63,41 @@ void treina(double in[LEN * LEN]) { //treina a partir de uma entrada dada
         for (int j = 0; j < NEURONIOS; j++) {
             double dist = distsimilar(in, n[i][j]);
             if (dist < menor) { iBMU = i; jBMU = j; menor = dist; }
-            attVizinhanca(in, iBMU, jBMU);
         }
+    attVizinhanca(in, iBMU, jBMU);
 }
 
 int main(void) {
     novosneuronios();
+    srand(unsigned(time(0)));
     FILE *f = fopen("in/1", "r");
     if (f == NULL) { printf("Não foi possível ler entrada.\n"); return 0; }
     int i, j, k;
-    double in[LEN * LEN];
+    vector<double> in(LEN * LEN);
     char tmp; int tmp1;
+    vector< pair < vector<double>, int > > entrada;
+    //Treinar mtas vezes para mesma entrada e aleatorizar
     for (i = 0; i < LAMBDA; i++) {
-        printf("%d\n", i);
-        for (j = 0; j < LEN; getchar(), j++)
-            for (k = 0; k < LEN; k++) {
-                fscanf(f, "%c", &tmp);
-                in[j * LEN + k] = tmp == '1';
-            }
-        fscanf(f, "%d ", &tmp1);
-        treina(in);
+      for (j = 0; j < LEN; fscanf(f, "%c", &tmp), j++)
+        for (k = 0; k < LEN; k++) {
+          fscanf(f, "%c", &tmp);
+          in[j * LEN + k] = tmp == '1';
+        }
+      fscanf(f, "%d ", &tmp1);
+      entrada.push_back(pair< vector<double>, int>(in, tmp1));
+      //treina(in);
     }
-
-    for (i = 0; i < NEURONIOS; i++)
+    random_shuffle(entrada.begin(), entrada.end());
+    for (i = 0; i < (int)entrada.size(); i++) {
+      printf("%d\n", entrada[i].second);
+    }
+    //Salvar treinamento
+    //Ler arquivo de teste e "reconhecer" quais neuronios estão de felizes em ver a entrada
+    /*for (i = 0; i < NEURONIOS; i++)
         for (j = 0; j < NEURONIOS; j++) {
             for (k = 0; k < LEN * LEN; k++)
                 printf("%.2lf", n[i][j][k]);
             printf("\n");
-        }
+            }*/
     return 0;
 }
