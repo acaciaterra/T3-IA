@@ -42,3 +42,15 @@ A entrada é pega automaticamente do arquivo
 A saída mostrará como a rede está, e qual caracter cada neurônio
   reconhece. Ao fim da tabela, existe a informação da porcentagem de
   acerto da rede.
+
+# Memória
+
+Na pasta 'mem', todo treinamento realizado está guardado. {1000, 3000,
+5000}.bk representam as memórias dos treinamentos com 1000, 3000 e 5000
+iterações, respectivamentes. Os arquivos nov{1000, 2000}.bk o
+treinamento com 1000 e 2000 iterações, respectivamente, usando outra
+função de restrição devido a distancia do neurônio ao BMU.
+
+O programa, ao iniciar, se não for informado o parametro -r para
+reiniciar a rede, será carregado automaticamente da memória o que se
+encontra no arquivo 'mem/1'.

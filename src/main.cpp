@@ -1,3 +1,14 @@
+/* Alunos: Acácia dos Campos da Terra e João Pedro Winckler Bernardi
+    Professor: José Carlos Bins Filho
+    Disciplina: Inteligência Artificial
+    Descrição: O trabalho consiste na criação de uma rede neural para
+    reconhecimento de caracteres. Foram criados dois programas para tal,
+    o primeiro responsável pela rede se encontra em 'main.cpp' e o
+    segundo pega a saída do primeiro e transforma num arquivo .csv para
+    uma melhor análise dos resultados, seu código está no arquivo
+    'csv.cpp'.
+ */
+
 #include <bits/stdc++.h>
 using namespace std;
 

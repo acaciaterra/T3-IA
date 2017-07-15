@@ -1,22 +1,17 @@
+/* Alunos: Acácia dos Campos da Terra e João Pedro Winckler Bernardi
+    Professor: José Carlos Bins Filho
+    Disciplina: Inteligência Artificial
+    Descrição: O trabalho consiste na criação de uma rede neural para
+    reconhecimento de caracteres. Foram criados dois programas para tal,
+    o primeiro responsável pela rede se encontra em 'main.cpp' e o
+    segundo pega a saída do primeiro e transforma num arquivo .csv para
+    uma melhor análise dos resultados, seu código está no arquivo
+    'csv.cpp'.
+ */
 #include <bits/stdc++.h>
 using namespace std;
 
 #define NEURONIOS 32
-
-/*int identifica(int x, int y) {
-  if ((x > 0 && x <= 4 && y <= 9 && y <= 12) || (x >= 5 && x < 12 && y > 5 && y < 15)) return 0;
-  if (x > 8 && x <= 24 && y > 27) return 1;
-  if ((x > 27 && y > 21) || (x > 24 && y > 25)) return 2;
-  if (x >= 22 && y < 8) return 3;
-  if ((x < 5 && y > 12 && y <= 26) || (x < 4 && y >= 27 && y < 29) || (x < 2 && y >= 29)) return 4;
-  if (((x > 13 && x < 22 &&  y > 11 && y < 15)) || (x > 16 && x < 26 && y >= 14 && y <= 20) || (x > 19 && x < 23 && y == 21)) return 5;
-  if ((x < 12 && y < 5) || (x < 5 && y < 9)) return 6;
-  if (x >= 27 && y < 21) return 7;
-  if ((x > 8 && x < 15 && y <= 20 && y > 16) || (x > 9 && x <= 19 && y > 20 && y < 27) || (x >= 20 && x < 28 && y > 21 && y < 25) || (x > 24 && x < 28 && y >= 20 && y <= 21)) return 8;
-  if ((x > 12 && x < 22 &&  y < 9) || (x > 1 && x < 4 && y > 30) || (x >= 4 && x <= 8 && y > 26)) return 9;
-  printf("UEPA");
-  return -1;
-  }*/
 
 int main(void) {
   char tmp;
@@ -51,7 +46,6 @@ int main(void) {
     }
     printf("\n");
   }
-  printf("Erros\n");
   int certos = 0, tot = 0;
     for (i = 0; i < NEURONIOS; i++) {
     for (j = 0; j < NEURONIOS; j++) {
@@ -65,8 +59,6 @@ int main(void) {
       for (k = 0; k < 10; k++) {
         if (k == num) certos += neu[i][j][k];
         tot+= neu[i][j][k];
-        if (neu[i][j][k] > 0 && k != num)
-          printf("%d reconhecido %d vezes como %d\n", k, neu[i][j][k], num);
       }
       
       /*printf(">>>%d\n", identifica(i, j));
