@@ -3,7 +3,7 @@ using namespace std;
 
 #define NEURONIOS 32
 
-int identifica(int x, int y) {
+/*int identifica(int x, int y) {
   if ((x > 0 && x <= 4 && y <= 9 && y <= 12) || (x >= 5 && x < 12 && y > 5 && y < 15)) return 0;
   if (x > 8 && x <= 24 && y > 27) return 1;
   if ((x > 27 && y > 21) || (x > 24 && y > 25)) return 2;
@@ -16,7 +16,7 @@ int identifica(int x, int y) {
   if ((x > 12 && x < 22 &&  y < 9) || (x > 1 && x < 4 && y > 30) || (x >= 4 && x <= 8 && y > 26)) return 9;
   printf("UEPA");
   return -1;
-}
+  }*/
 
 int main(void) {
   char tmp;
@@ -32,31 +32,28 @@ int main(void) {
   }
   for (i = 0; i < NEURONIOS; i++) {
     for (j = 0; j < NEURONIOS; j++) {
-      //set<int> x; int first = 1;
+      //set<int> s; int first = 1;
       num = 0; x = 0;
-      for (k = 0; k < 10; k++){
-        if (neu[i][j][k] > 0) {
+      for (k = 0; k < 10; k++) {
+        /* if (neu[i][j][k] > 0) {
           printf("(%d,%d),", k, neu[i][j][k]);
-        }
+          }*/
         if (neu[i][j][k] > x) {
           x = neu[i][j][k];
           num = k;
-        }
+          }
+        //}
+        //if (neu[i][j][k] == 0) continue;
       }
-              //if (neu[i][j][k] == 0) continue;
-        /*if (x.find(k) == x.end()) {
-          x.insert(k);
-          printf("%s%d", first ? "": ",", k);
-          first = 0;
-          }*/
-      //if (x) printf("%d;", num);
+      if (x) printf("%d", num);
       //else
       printf(";");
     }
     printf("\n");
   }
+  printf("Erros\n");
   int certos = 0, tot = 0;
-  for (i = 0; i < NEURONIOS; i++) {
+    for (i = 0; i < NEURONIOS; i++) {
     for (j = 0; j < NEURONIOS; j++) {
       num = 0; x = 0;
       for (k = 0; k < 10; k++)
@@ -65,7 +62,14 @@ int main(void) {
           num = k;
         }
       if (x == 0) continue;
-      printf(">>>%d\n", identifica(i, j));
+      for (k = 0; k < 10; k++) {
+        if (k == num) certos += neu[i][j][k];
+        tot+= neu[i][j][k];
+        if (neu[i][j][k] > 0 && k != num)
+          printf("%d reconhecido %d vezes como %d\n", k, neu[i][j][k], num);
+      }
+      
+      /*printf(">>>%d\n", identifica(i, j));
       if (identifica(i, j) != -1) {
         certos += neu[i][j][identifica(i, j)];
       } else if(identifica(j, i) != -1) {
@@ -80,6 +84,7 @@ int main(void) {
       }
       for (k = 0; k < 10; k++)
         tot += neu[i][j][k];
+      */
     }
   }
   printf("\n\nTaxa de acerto: %lf%%\n;", certos * 100 / (double) (tot));

@@ -131,7 +131,7 @@ void identifica() {
 
 int main(int argc, char *argv[]) {
     srand(unsigned(time(0)));
-    if ((argc > 1 && !strcmp(argv[1], "-n")) || (argc > 2 && !strcmp(argv[2], "-n"))) {
+    if ((argc > 1 && !strcmp(argv[1], "-r")) || (argc > 2 && !strcmp(argv[2], "-r"))) {
       //printf("Novos neuronios...\n");
       //getchar();
       novosneuronios();
