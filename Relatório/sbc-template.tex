@@ -3,7 +3,9 @@
 \usepackage{sbc-template}
 \usepackage[portuguese, ruled, linesnumbered]{algorithm2e}
 \usepackage{graphicx,url}
-
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{multirow}
+\usepackage{tabulary}
 \usepackage[brazil]{babel}   
 %\usepackage[latin1]{inputenc}  
 \usepackage[utf8]{inputenc}  
@@ -25,119 +27,59 @@
 
 \begin{document}
 
-\maketitle
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option,
+% i.e. \documentclass[xcolor=table]{beamer}
+\section{Blabla}
 
-\begin{resumo}
-  Este documento tem por função descrever o programa cujo objetivo é,
-  dado um caracter escrito a mão, determinar qual é esse carácter. Esse
-  procedimento é realizado através de uma rede neural, que foi treinada
-  para tal. Neste trabalho estarão descritos os resultados obtidos.
-\end{resumo}
-
-
-\section{Introdução}
-O algoritmo de Kohonen é relativamente simples e possui a capacidade de
-organizar dados em grupos. Então, utilizando uma matriz de neurônios
-como rede neural e treinando a rede através do algoritmo de Kohonen,
-conseguimos organizar em grupos os dados. Neste trabalho, os dados são
-caracteres numéricos. Assim, a rede se auto-organizará, separando em
-grupos as características de cada número. Para reconhecer um carácter,
-verifica-se qual neurônio o reconhece e em qual grupo este neurônio
-esta. Isso será melhor explicado quando for falado sobre os resultados.
-
-\section{Algoritmo de Kohonen}
-O algoritmo de Kohonen, que consiste no treinamento da rede neural, está
-descrito a seguir.
-\begin{algorithm}
-    \SetAlgoLined
-    \Entrada{$d: data$}
-    Randomize os valores dos neurônios da rede\\
-    \Para{cada neurônio no mapa}{
-      Use a distância euclidiana para encontrar o neurônio mais
-        similar com a entrada, ou seja, o com menor distância(BMU).\\
-    }
-    Atualize os neurônios na vizinhança do BMU, aproximando-os da
-    entrada.\\
-    Repita o processo enquanto houverem entradas ou a quantidade de
-    iterações desejada não foi atingida.
-    \caption{\textsc{Kohonen}}
-    \label{alg1}
-\end{algorithm}
-
-\section{Implementação}
-A rede de neurônios é representada por uma matriz de neurônios. Cada
-posição da matriz consiste num neurônio que é representado por um vetor
-de \emph{double}. Ao início do processo, todo neurônio é preenchido com
-valores aleatórios de 0 a 1. Então, a partir da entrada de treinamento
-obtida a partir da base de dados da UCI, a rede é treinada. Todas as
-entradas são guardadas num vetor, que é embaralhado. Seja D o vetor de
-dados e N a matriz de neurônios, ao descobrir o BMU, a vizinhança é
-atualizada com a fórmula:
-
-\begin{math}
-  N[i][j] = (D - N[i][j]) * LEN / (8.0 * distBMU(iBMU, jBMU, i, j)) * \alpha;
-\end{math}
-
-\begin{itemize}
-  \item $i$ e $j$: representam a posição do neurônio que está sendo
-    atualizado.
-  \item $iBMU$ e $jBMU$: representam a posição do BMU.
-  \item $distBMU$: é a função que calcula a distância do neurônio
-    N[i][j] do BMU na rede.
-  \item $LEN$: é a quantidade de linhas/colunas da entrada, neste
-    trabalho é 32.
-  \item $LEN / (8.0 * distBMU(iBMU, jBMU, i, j)$: representa a restrição
-    devido a distancia do BMU.
-  \item $\alpha$: é a restrição de aprendizagem. Normalmente, considera-se 0,1.
-\end{itemize}
-
-Esse processo todo pode ser visto no código nesses trechos:
-
-\small
-\begin{verbatim}
-void leTreino() {
-...
-//Itera-se pela quantidade de vezes que
-//será realizado o treinamento
-  for (j = 0; j < QTDTREINO; j++) {
-    //Randomiza-se a entrada
-    random_shuffle(entrada.begin(), entrada.end());
-    //Para cada caracter da entrada, treina-se a rede
-    for (i = 0; i < (int)entrada.size(); i++)
-      treina(entrada[i].first);
-  }
-...
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{clllllllllllllllllllllllllllllll}
+\hline
+\multicolumn{12}{|c|}{\cellcolor[HTML]{FFCCC9}}                                                                                                                                                                                                                                                                                      & \multicolumn{1}{l|}{} & \multicolumn{9}{l|}{\cellcolor[HTML]{FFCE93}}                                                                                                                                                                         & \multicolumn{10}{l|}{\cellcolor[HTML]{FFFC9E}}                                                                                                                                                                                                 \\ \cline{13-13}
+\multicolumn{12}{|c|}{\cellcolor[HTML]{FFCCC9}}                                                                                                                                                                                                                                                                                      & \multicolumn{1}{l|}{} & \multicolumn{9}{l|}{\cellcolor[HTML]{FFCE93}}                                                                                                                                                                         & \multicolumn{10}{l|}{\cellcolor[HTML]{FFFC9E}}                                                                                                                                                                                                 \\ \cline{13-13}
+\multicolumn{12}{|c|}{\cellcolor[HTML]{FFCCC9}}                                                                                                                                                                                                                                                                                      & \multicolumn{1}{l|}{} & \multicolumn{9}{l|}{\cellcolor[HTML]{FFCE93}}                                                                                                                                                                         & \multicolumn{10}{l|}{\cellcolor[HTML]{FFFC9E}}                                                                                                                                                                                                 \\ \cline{13-13}
+\multicolumn{12}{|c|}{\cellcolor[HTML]{FFCCC9}}                                                                                                                                                                                                                                                                                      & \multicolumn{1}{l|}{} & \multicolumn{9}{l|}{\cellcolor[HTML]{FFCE93}}                                                                                                                                                                         & \multicolumn{10}{l|}{\cellcolor[HTML]{FFFC9E}}                                                                                                                                                                                                 \\ \cline{13-13}
+\multicolumn{12}{|c|}{\multirow{-5}{*}{\cellcolor[HTML]{FFCCC9}6}}                                                                                                                                                                                                                                                                   & \multicolumn{1}{l|}{} & \multicolumn{9}{l|}{\cellcolor[HTML]{FFCE93}}                                                                                                                                                                         & \multicolumn{10}{l|}{\cellcolor[HTML]{FFFC9E}}                                                                                                                                                                                                 \\ \cline{1-13}
+\multicolumn{4}{|c|}{\cellcolor[HTML]{FFCCC9}}                                                                                       & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{9}{l|}{\cellcolor[HTML]{FFCE93}}                                                                                                                                                                         & \multicolumn{10}{l|}{\cellcolor[HTML]{FFFC9E}}                                                                                                                                                                                                 \\ \cline{5-13}
+\multicolumn{4}{|c|}{\cellcolor[HTML]{FFCCC9}}                                                                                       & \multicolumn{1}{l|}{} & \multicolumn{7}{l|}{\cellcolor[HTML]{9AFF99}}                                                                                                                         & \multicolumn{1}{l|}{} & \multicolumn{9}{l|}{\cellcolor[HTML]{FFCE93}}                                                                                                                                                                         & \multicolumn{10}{l|}{\cellcolor[HTML]{FFFC9E}}                                                                                                                                                                                                 \\ \cline{5-5} \cline{13-13}
+\multicolumn{4}{|c|}{\cellcolor[HTML]{FFCCC9}}                                                                                       & \multicolumn{1}{l|}{} & \multicolumn{7}{l|}{\cellcolor[HTML]{9AFF99}}                                                                                                                         & \multicolumn{1}{l|}{} & \multicolumn{9}{l|}{\cellcolor[HTML]{FFCE93}}                                                                                                                                                                         & \multicolumn{10}{l|}{\multirow{-8}{*}{\cellcolor[HTML]{FFFC9E}3}}                                                                                                                                                                              \\ \cline{5-5} \cline{13-13} \cline{23-32} 
+\multicolumn{4}{|c|}{\multirow{-4}{*}{\cellcolor[HTML]{FFCCC9}6}}                                                                    & \multicolumn{1}{l|}{} & \multicolumn{7}{l|}{\cellcolor[HTML]{9AFF99}}                                                                                                                         & \multicolumn{1}{l|}{} & \multicolumn{9}{l|}{\multirow{-9}{*}{\cellcolor[HTML]{FFCE93}9}}                                                                                                                                                      & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{}            & \multicolumn{5}{l|}{\cellcolor[HTML]{CBCEFB}}                                                               \\ \cline{1-5} \cline{13-27}
+\multicolumn{1}{|c|}{}                      & \multicolumn{4}{l|}{\cellcolor[HTML]{9AFF99}}                                                                  & \multicolumn{7}{l|}{\cellcolor[HTML]{9AFF99}}                                                                                                                         & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{}            & \multicolumn{5}{l|}{\cellcolor[HTML]{CBCEFB}}                                                               \\ \cline{1-1} \cline{13-27}
+\multicolumn{1}{|c|}{}                      & \multicolumn{4}{l|}{\cellcolor[HTML]{9AFF99}}                                                                  & \multicolumn{7}{l|}{\cellcolor[HTML]{9AFF99}}                                                                                                                         & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{}            & \multicolumn{5}{l|}{\cellcolor[HTML]{CBCEFB}}                                                               \\ \cline{1-1} \cline{13-27}
+\multicolumn{1}{|c|}{}                      & \multicolumn{4}{l|}{\cellcolor[HTML]{9AFF99}}                                                                  & \multicolumn{7}{l|}{\cellcolor[HTML]{9AFF99}}                                                                                                                         & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{8}{l|}{\cellcolor[HTML]{FD6864}}                                                                                                                                                 & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{}            & \multicolumn{5}{l|}{\cellcolor[HTML]{CBCEFB}}                                                               \\ \cline{1-1} \cline{13-14} \cline{23-27}
+\multicolumn{1}{|c|}{}                      & \multicolumn{4}{l|}{\multirow{-4}{*}{\cellcolor[HTML]{9AFF99}0}}                                               & \multicolumn{7}{l|}{\cellcolor[HTML]{9AFF99}}                                                                                                                         & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{8}{l|}{\cellcolor[HTML]{FD6864}}                                                                                                                                                 & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{}            & \multicolumn{5}{l|}{\cellcolor[HTML]{CBCEFB}}                                                               \\ \cline{1-5} \cline{13-14} \cline{23-27}
+\multicolumn{5}{|c|}{\cellcolor[HTML]{96FFFB}}                                                                                                               & \multicolumn{7}{l|}{\cellcolor[HTML]{9AFF99}}                                                                                                                         & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{8}{l|}{\cellcolor[HTML]{FD6864}}                                                                                                                                                 & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{}            & \multicolumn{5}{l|}{\cellcolor[HTML]{CBCEFB}}                                                               \\ \cline{13-14} \cline{23-27}
+\multicolumn{5}{|c|}{\cellcolor[HTML]{96FFFB}}                                                                                                               & \multicolumn{7}{l|}{\multirow{-9}{*}{\cellcolor[HTML]{9AFF99}0}}                                                                                                      & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{8}{l|}{\multirow{-4}{*}{\cellcolor[HTML]{FD6864}5}}                                                                                                                              & \multicolumn{4}{l|}{\cellcolor[HTML]{FD6864}5}                                                & \multicolumn{1}{l|}{}            & \multicolumn{5}{l|}{\cellcolor[HTML]{CBCEFB}}                                                               \\ \cline{6-27}
+\multicolumn{5}{|c|}{\cellcolor[HTML]{96FFFB}}                                                                                                               & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{9}{l|}{\cellcolor[HTML]{FD6864}}                                                                                                                                                                         & \multicolumn{1}{l|}{}            & \multicolumn{5}{l|}{\cellcolor[HTML]{CBCEFB}}                                                               \\ \cline{6-17} \cline{27-27}
+\multicolumn{5}{|c|}{\cellcolor[HTML]{96FFFB}}                                                                                                               & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{9}{l|}{\cellcolor[HTML]{FD6864}}                                                                                                                                                                         & \multicolumn{1}{l|}{}            & \multicolumn{5}{l|}{\cellcolor[HTML]{CBCEFB}}                                                               \\ \cline{6-17} \cline{27-27}
+\multicolumn{5}{|c|}{\cellcolor[HTML]{96FFFB}}                                                                                                               & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{6}{l|}{\cellcolor[HTML]{FFFE65}}                                                                                                 & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{9}{l|}{\cellcolor[HTML]{FD6864}}                                                                                                                                                                         & \multicolumn{1}{l|}{}            & \multicolumn{5}{l|}{\cellcolor[HTML]{CBCEFB}}                                                               \\ \cline{6-9} \cline{16-17} \cline{27-27}
+\multicolumn{5}{|c|}{\cellcolor[HTML]{96FFFB}}                                                                                                               & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{6}{l|}{\cellcolor[HTML]{FFFE65}}                                                                                                 & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{9}{l|}{\cellcolor[HTML]{FD6864}}                                                                                                                                                                         & \multicolumn{1}{l|}{}            & \multicolumn{5}{l|}{\cellcolor[HTML]{CBCEFB}}                                                               \\ \cline{6-9} \cline{16-17} \cline{27-27}
+\multicolumn{5}{|c|}{\cellcolor[HTML]{96FFFB}}                                                                                                               & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{6}{l|}{\cellcolor[HTML]{FFFE65}}                                                                                                 & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{9}{l|}{\cellcolor[HTML]{FD6864}}                                                                                                                                                                         & \multicolumn{1}{l|}{}            & \multicolumn{5}{l|}{\multirow{-12}{*}{\cellcolor[HTML]{CBCEFB}7}}                                           \\ \cline{6-9} \cline{16-17} \cline{27-32} 
+\multicolumn{5}{|c|}{\cellcolor[HTML]{96FFFB}}                                                                                                               & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{6}{l|}{\multirow{-4}{*}{\cellcolor[HTML]{FFFE65}}}                                                                               & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{9}{l|}{\multirow{-6}{*}{\cellcolor[HTML]{FD6864}5}}                                                                                                                                                      & \multicolumn{2}{l|}{\cellcolor[HTML]{FFFE65}8} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} \\ \cline{6-32} 
+\multicolumn{5}{|c|}{\cellcolor[HTML]{96FFFB}}                                                                                                               & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{10}{l|}{\cellcolor[HTML]{FFFE65}}                                                                                                                                                                                                & \multicolumn{4}{l|}{\cellcolor[HTML]{FD6864}5}                                                & \multicolumn{1}{l|}{} & \multicolumn{3}{l|}{\cellcolor[HTML]{FFFE65}8}                         & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} \\ \cline{6-10} \cline{21-32} 
+\multicolumn{5}{|c|}{\cellcolor[HTML]{96FFFB}}                                                                                                               & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{10}{l|}{\cellcolor[HTML]{FFFE65}}                                                                                                                                                                                                & \multicolumn{8}{l|}{\cellcolor[HTML]{FFFE65}}                                                                                                                                                  & \multicolumn{4}{l|}{\cellcolor[HTML]{67FD9A}}                                                 \\ \cline{6-10}
+\multicolumn{5}{|c|}{\cellcolor[HTML]{96FFFB}}                                                                                                               & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{10}{l|}{\cellcolor[HTML]{FFFE65}}                                                                                                                                                                                                & \multicolumn{8}{l|}{\cellcolor[HTML]{FFFE65}}                                                                                                                                                  & \multicolumn{4}{l|}{\cellcolor[HTML]{67FD9A}}                                                 \\ \cline{6-10}
+\multicolumn{5}{|c|}{\cellcolor[HTML]{96FFFB}}                                                                                                               & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{10}{l|}{\cellcolor[HTML]{FFFE65}}                                                                                                                                                                                                & \multicolumn{8}{l|}{\cellcolor[HTML]{FFFE65}}                                                                                                                                                  & \multicolumn{4}{l|}{\cellcolor[HTML]{67FD9A}}                                                 \\ \cline{6-10}
+\multicolumn{5}{|c|}{\cellcolor[HTML]{96FFFB}}                                                                                                               & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{10}{l|}{\cellcolor[HTML]{FFFE65}}                                                                                                                                                                                                & \multicolumn{8}{l|}{\multirow{-4}{*}{\cellcolor[HTML]{FFFE65}8}}                                                                                                                               & \multicolumn{4}{l|}{\multirow{-4}{*}{\cellcolor[HTML]{67FD9A}2}}                              \\ \cline{6-10} \cline{21-32} 
+\multicolumn{5}{|c|}{\multirow{-14}{*}{\cellcolor[HTML]{96FFFB}4}}                                                                                           & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{10}{l|}{\cellcolor[HTML]{FFFE65}}                                                                                                                                                                                                & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{7}{l|}{\cellcolor[HTML]{67FD9A}}                                                                                                                          \\ \cline{1-10} \cline{21-25}
+\multicolumn{2}{|c|}{\cellcolor[HTML]{96FFFB}}                    & \multicolumn{2}{l|}{\cellcolor[HTML]{96FFFB}}                    & \multicolumn{5}{l|}{\cellcolor[HTML]{FFCC67}}                                                                         & \multicolumn{1}{l|}{} & \multicolumn{10}{l|}{\multirow{-7}{*}{\cellcolor[HTML]{FFFE65}8}}                                                                                                                                                                             & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{7}{l|}{\cellcolor[HTML]{67FD9A}}                                                                                                                          \\ \cline{10-25}
+\multicolumn{2}{|c|}{\cellcolor[HTML]{96FFFB}}                    & \multicolumn{2}{l|}{\multirow{-2}{*}{\cellcolor[HTML]{96FFFB}}}  & \multicolumn{5}{l|}{\cellcolor[HTML]{FFCC67}}                                                                         & \multicolumn{16}{l|}{\cellcolor[HTML]{9698ED}}                                                                                                                                                                                                                                                                                                                                                & \multicolumn{7}{l|}{\cellcolor[HTML]{67FD9A}}                                                                                                                          \\ \cline{3-4}
+\multicolumn{2}{|c|}{\cellcolor[HTML]{96FFFB}}                    & \multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{}          & \multicolumn{5}{l|}{\cellcolor[HTML]{FFCC67}}                                                                         & \multicolumn{16}{l|}{\cellcolor[HTML]{9698ED}}                                                                                                                                                                                                                                                                                                                                                & \multicolumn{7}{l|}{\cellcolor[HTML]{67FD9A}}                                                                                                                          \\ \cline{3-4}
+\multicolumn{2}{|c|}{\cellcolor[HTML]{96FFFB}}                    & \multicolumn{2}{l|}{\cellcolor[HTML]{FFCC67}}                    & \multicolumn{5}{l|}{\cellcolor[HTML]{FFCC67}}                                                                         & \multicolumn{16}{l|}{\cellcolor[HTML]{9698ED}}                                                                                                                                                                                                                                                                                                                                                & \multicolumn{7}{l|}{\cellcolor[HTML]{67FD9A}}                                                                                                                          \\
+\multicolumn{2}{|c|}{\multirow{-5}{*}{\cellcolor[HTML]{96FFFB}4}} & \multicolumn{2}{l|}{\multirow{-2}{*}{\cellcolor[HTML]{FFCC67}9}} & \multicolumn{5}{l|}{\multirow{-5}{*}{\cellcolor[HTML]{FFCC67}9}}                                                      & \multicolumn{16}{l|}{\multirow{-4}{*}{\cellcolor[HTML]{9698ED}1}}                                                                                                                                                                                                                                                                                                                             & \multicolumn{7}{l|}{\multirow{-6}{*}{\cellcolor[HTML]{67FD9A}2}}                                                                                                       \\ \hline
+                                            &                     &                                 &                                &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                                  &             &                       &                       &                       &                       \\
+                                            &                     &                                 &                                &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                                  &             &                       &                       &                       &                       \\
+                                            &                     &                                 &                                &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                                  &             &                       &                       &                       &                       \\
+                                            &                     &                                 &                                &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                                  &             &                       &                       &                       &                      
+\end{tabular}%
 }
-
-void treina(vector<double> in) {
-  //Descobre-se o BMU
-  pair<int, int> _bmu = bmu(in);
-  //Atualiza a vizinhança
-  attVizinhanca(in, _bmu.first, _bmu.second);
-}
-
-void attVizinhanca(vector<double> in, int iBMU, int jBMU) {
-    for (int i = 0; i < NEURONIOS; i++)
-        for (int j = 0; j < NEURONIOS; j++) {
-            double _const = LEN /
-                       (8.0 * distBMU(iBMU, jBMU, i, j)) * ALPHA;
-            for (int k = 0; k < LEN * LEN; k++)
-                n[i][j][k] += ((in[k] - n[i][j][k]) * _const);
-        }
-}
-\end{verbatim}
-\normalsize
-É importante ressaltar que as entradas estão no formato de uma matriz de
-tamanho 32 por 32, porém, para facilitar o processo, todas as linhas são
-concatenadas num vetor. Por isso, os neurônios no trabalho também são
-vetores.
-
-
-\section{Treinamento}
-
-
-\section{Resultados}
-\section{References}
+\end{table}
 
 %\bibliographystyle{sbc}
 %\bibliography{sbc-template}

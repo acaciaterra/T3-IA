@@ -1,2 +1,3 @@
 all:
-	g++ *.cpp -Wall -O2 -std=c++11
+	g++ main.cpp -o rede -Wall -O2 -std=c++11
+	g++ csv.cpp -o csv -Wall -O2 -std=c++11
